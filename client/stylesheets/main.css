@@ -13,3 +13,34 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
   padding: 0;
 }
+
+.single-article {
+  max-width: 100%;
+}
+
+.image-article {
+  width: 100%;
+  text-align: center;
+}
+
+.image-article img {
+  width: 100%;
+}
+
+.main-article {
+  margin-top: 4%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.article-content {
+  margin-top: 4%;
+}
+
+.tag-article {
+  margin-top: 4%;
+}
+
+.main-tag  {
+  margin-left: 1%;
+}

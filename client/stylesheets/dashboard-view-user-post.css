@@ -1,0 +1,33 @@
+.table-userpost {
+  margin-top: 5%;
+}
+
+.table-head-no {
+  width: 10%;
+}
+
+.table-head-title {
+  width: 75%;
+}
+
+.table-head-option {
+  width: 15%;
+}
+
+.user-post-row td {
+  height: 40px;
+}
+
+#navbarDropdown {
+  padding: 0;
+}
+
+.list-article-empty {
+  margin-top: 5%;
+  text-align: center;
+}
+
+.list-article-empty img {
+  margin-top: 4%;
+  width: 10%;
+}

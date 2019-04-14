@@ -50,11 +50,20 @@
   text-align: center;
 }
 
-.g-signin2{
-  margin-top: 4%;
-  width: 100%;
+.error-register {
+  font-size: 15px;
+  font-weight: 300;
+  color: red;
 }
 
-.g-signin2 > div{
-  margin: 0 auto;
+.error-login-page {
+  margin-top: 5%;
+  margin-bottom: -5%;
+}
+
+.error-login {
+  text-align: center;
+  font-size: 15px;
+  font-weight: 300;
+  color: red;
 }

@@ -20,6 +20,13 @@
   <link rel="stylesheet" type="text/css" media="screen" href="./stylesheets/main.css">
   <link rel="stylesheet" type="text/css" media="screen" href="./stylesheets/main-header.css">
   <link rel="stylesheet" type="text/css" media="screen" href="./stylesheets/member-area.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="./stylesheets/dashboard.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="./stylesheets/create-new-post.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="./stylesheets/dashboard-view-user-post.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="./stylesheets/home.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="./stylesheets/footer.css">
+
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
   <!-- axios -->
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -31,19 +38,30 @@
   <link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
 
   <!-- font awesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/brands.css" integrity="sha384-n9+6/aSqa9lBidZMRCQHTHKJscPq6NW4pCQBiMmHdUCvPN8ZOg2zJJTkC7WIezWv" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/fontawesome.css" integrity="sha384-vd1e11sR28tEK9YANUtpIOdjGW14pS87bUBuOIoBILVWLFnS+MCX9T6MMf0VdPGq" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+  <!-- ckEditor -->
+  <script src="https://cdn.ckeditor.com/4.11.3/standard/ckeditor.js"></script>
+
+  <!-- Tags -->
+  <script src="https://unpkg.com/vue"></script>
+  <script src="https://unpkg.com/vue-input-tag"></script>
 
 </head>
 <body>
   <div id="app">
-    <mainheader-template></mainheader-template>
+    <mainheader-template
+      v-bind:location="location"
+      v-bind:is-login="isLogin" 
+    ></mainheader-template>
 
     <!-- ================================================================================================== -->
 
     <home
       v-bind:location="location"
-      v-bind:isLogin="isLogin" 
+      v-bind:is-login="isLogin" 
+      v-bind:all-articles="allArticles"
+      v-on:go-to-single-article="onClickViewArticle"
       >
     </home>
 
@@ -51,12 +69,51 @@
 
     <member-area
       v-bind:location="location" 
-      v-bind:isLogin="isLogin"
+      v-bind:is-login="isLogin"
       >
     </member-area>
 
+    <!-- ================================================================================================== -->
+
+    <main-dashboard
+      v-bind:location="location" 
+      v-bind:is-login="isLogin"
+      v-bind:username="username"
+      v-bind:side-menu="sideMenu"
+      v-bind:user-articles="userArticles"
+      v-on:go-to-home="onClickHome"
+      v-on:go-to-view-all-post-after-create="onClickDashboardViewAllAfterCreate"
+      v-on:go-to-dashboard-update-form="onClickDashboardPostForm"
+      v-on:go-to-view-all-post-after-update="onClickViewAllPostAfterUpdate"
+      v-on:go-to-dashboard-edit-image-form="onClickDashboardUpdateImage"
+      v-on:go-to-view-all-post-after-update-image="onClickViewAllPostAfterUpdateImage"
+      v-on:go-to-view-all-post-after-delete-article="onRemoveArticle"
+      >
+    </main-dashboard>
+
+    <view-single-article
+      v-bind:location="location"
+      v-bind:is-login="isLogin" 
+      v-bind:article="article" 
+      v-on:to-view-articles-by-tag="onArticleTag"
+      >
+    </view-single-article>
+
+    <view-by-tags
+      v-bind:location="location"
+      v-bind:is-login="isLogin" 
+      v-bind:article-tag="articleTag"
+      v-on:to-single-article-by-tag="onClickViewArticle"
+      >
+    </view-by-tags>
+
+    <main-footer
+      v-bind:location="location"
+      >
+    </main-footer>
   </div>
-  <!-- ================================================================================================== -->
+    <!-- ================================================================================================== -->
+    
   <!-- vue script -->
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
@@ -69,16 +126,28 @@
   <script src="./js/components/Header.js"></script>
   <script src="./js/components/RegistrationForm.js"></script>
   <script src="./js/components/LoginForm.js"></script>
+  <script src="./js/components/SidebarMenu.js"></script>
+  <script src="./js/components/DashboardView.js"></script>
+  <script src="./js/components/AllPostView.js"></script>
+  <script src="./js/components/PostForm.js"></script>
+  <script src="./js/components/TextEditor.js"></script>
+  <script src="./js/components/InputTags.js"></script>
+  <script src="./js/components/UpdateForm.js"></script>
+  <script src="./js/components/UpdateImage.js"></script>
+  <script src="./js/components/HomePost.js"></script>
   
   <!-- views -->
   <script src="./js/views/MainHeader.js"></script>
   <script src="./js/views/Home.js"></script>
   <script src="./js/views/MemberArea.js"></script>
+  <script src="./js/views/Dashboard.js"></script>
+  <script src="./js/views/ViewArticle.js"></script>
+  <script src="./js/views/Footer.js"></script>
+  <script src="./js/views/ViewByTags.js"></script>
 
   <!-- vue main.js -->
   <script src="./js/main.js"></script>
 
 </body>
 </html>
-
 

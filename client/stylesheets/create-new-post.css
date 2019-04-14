@@ -1,0 +1,15 @@
+.dashboard-page {
+  margin-top: 3%;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 15%;
+  width: 100%;
+}
+
+.input-new-post {
+  margin-top: 5%;
+}
+
+.input-new-create {
+  text-align: center;
+}

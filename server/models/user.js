@@ -36,7 +36,7 @@ const UserSchema = new schema({
   }, 
   password: {
     type: String,
-    required: true
+    required: [true, 'Password field must not empty']
   }
 })
 

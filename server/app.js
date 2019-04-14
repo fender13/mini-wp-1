@@ -5,15 +5,17 @@ const cors = require('cors')
 const ENV = require('dotenv')
 ENV.config()
 
-const port = Number(process.env.PORT)
+const port = Number(process.env.PORT) || 3000
 
-const indexRotes = require('./routes/index')
+const indexRoutes = require('./routes/index')
+const articleRoutes = require('./routes/article')
 
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 app.use(cors())
 
-app.use('/', indexRotes)
+app.use('/', indexRoutes)
+app.use('/articles', articleRoutes)
 
 app.get('*', (req, res) => {
   res.status(404).json({

@@ -1,15 +1,47 @@
 Vue.component('login-form', {
+  props: ['location', 'is-login'],
   data() {
     return {
       username: '',
-      password: ''
+      password: '',
+      errorLogin: ''
+    }
+  },
+  methods: {
+    userLogin() {
+      let dataLogin = {
+        username: this.username,
+        password: this.password
+      }
+
+      axios 
+        .post(`${baseURL}/login`, dataLogin)
+        .then(({ data }) => {
+          localStorage.setItem('token', data.token)
+          this.$root.username = data.username
+          this.$root.isLogin = true
+          this.$root.location = 'home'
+          swal("Welcome", data.username, "success")
+        })
+        .catch(({ response }) => {
+          if (response.data) {
+            if (response.data.message != undefined) {
+              this.errorLogin = response.data.message
+            } else {
+              this.errorLogin = ''
+            }
+          }
+        })
     }
   },
   template: `
   <div class="login-form">
     <h2><img src="./assets/icon/login.png" alt="Login"> Login</h2>
+    <div class="error-login-page" v-if="errorLogin != ''">
+      <p class="error-login">{{ errorLogin }}</p>
+    </div>
     <div>
-      <form class="form-container" id="form-login">
+      <form class="form-container" id="form-login" v-on:submit.prevent="userLogin">
         <div class="row">
           <div class="col">
             <label for="username">Username</label>
@@ -34,7 +66,7 @@ Vue.component('login-form', {
         </div>
         <div class="row mt-2">
           <div class="col">
-            <input type="button" class="btn btn-primary" value="Sign In" name="submit-login" id="submit-login">
+            <input type="submit" class="btn btn-primary" value="Sign In" name="submit-login" id="submit-login">
           </div>
         </div>
       </form>

@@ -1,4 +1,5 @@
 Vue.component('member-area', {
+  props: ['location', 'is-login'],
   data() {
     return {
       login_menu: true
@@ -13,7 +14,7 @@ Vue.component('member-area', {
     }
   },
   template: `
-  <div class="page member-area">
+  <div class="page member-area" v-if="location == 'member-area' && !isLogin" >
     <div class="member-container">
       <div class="member-area">
         <div class="container">
@@ -35,8 +36,14 @@ Vue.component('member-area', {
               </div>
             </div>
             <div class="col-6">
-              <login-form v-if="login_menu"></login-form>
-              <registration-form v-if="!login_menu"></registration-form>
+              <login-form 
+                v-if="login_menu" 
+                >
+              </login-form>
+              <registration-form 
+                v-else 
+                >
+              </registration-form>
             </div>
           </div>
         </div>
